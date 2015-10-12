@@ -7,7 +7,7 @@ public class MainApp extends com.mark.mobile.MainApp{
     @Override
     public void onCreate() {
         super.onCreate();
-        PreferencesUtils.init(this, "com.goufang.mobile");
+        PreferencesUtils.init(this, "com.icomp.isscp");
     }
 
 }
