@@ -11,13 +11,13 @@ public class RespLogin implements Parcelable{
     }*/
 
     private boolean isError;
-    private String reData;
-    private String reMsg;
+    private String ReData;
+    private String ReMsg;
 
     protected RespLogin(Parcel in) {
         isError = in.readByte() != 0;
-        reData = in.readString();
-        reMsg = in.readString();
+        ReData = in.readString();
+        ReMsg = in.readString();
     }
 
     public static final Creator<RespLogin> CREATOR = new Creator<RespLogin>() {
@@ -41,19 +41,19 @@ public class RespLogin implements Parcelable{
     }
 
     public String getReData() {
-        return reData;
+        return ReData;
     }
 
     public void setReData(String reData) {
-        this.reData = reData;
+        this.ReData = reData;
     }
 
     public String getReMsg() {
-        return reMsg;
+        return ReMsg;
     }
 
     public void setReMsg(String reMsg) {
-        this.reMsg = reMsg;
+        this.ReMsg = reMsg;
     }
 
     @Override
@@ -64,7 +64,7 @@ public class RespLogin implements Parcelable{
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeByte((byte) (isError ? 1 : 0));
-        dest.writeString(reData);
-        dest.writeString(reMsg);
+        dest.writeString(ReData);
+        dest.writeString(ReMsg);
     }
 }
