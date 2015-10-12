@@ -24,7 +24,7 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         NetTaskContext.getInstance().doLogin("1100011", "123456", new RespListenerToast<RespLogin>() {
             @Override
             public void onResponse(RespLogin resp) {
-                assertFalse(resp.isError());
+                assertFalse(resp!=null && resp.getReData()!=null && resp.getReData().length()>4);
             }
         });
     }
