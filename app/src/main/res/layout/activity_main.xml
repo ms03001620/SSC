@@ -30,13 +30,12 @@
         android:layout_above="@+id/tabs"
         android:layout_below="@+id/appbarlayout" />
 
-
     <android.support.design.widget.TabLayout
         android:id="@+id/tabs"
         style="@style/MyCustomTabLayout"
         android:layout_width="match_parent"
-        android:background="#74BDB6"
-        android:layout_height="58dp"
-        android:layout_alignParentBottom="true" />
+        android:layout_height="@dimen/tab_height"
+        android:layout_alignParentBottom="true"
+        android:background="?attr/colorPrimary" />
 
 </RelativeLayout>
