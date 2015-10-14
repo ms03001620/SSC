@@ -1,23 +1,17 @@
 package com.mark.mobile.volley;
 
-import android.app.Dialog;
-import android.widget.Toast;
-
-import com.android.volley.Response;
-import com.android.volley.ServerError;
-import com.android.volley.TimeoutError;
-import com.android.volley.VolleyError;
-import com.mark.mobile.MainApp;
-
-import java.net.ConnectException;
-import java.net.UnknownHostException;
+import android.app.ProgressDialog;
+import android.content.Context;
 
 
 public abstract class RespListenerDialogToast<T> extends RespListenerToast<T> {
-    private Dialog mDialog;
+    private ProgressDialog mDialog;
 
-    public RespListenerDialogToast(Dialog dialog){
-        mDialog = dialog;
+    public RespListenerDialogToast(Context dialog){
+        //ProgressDialog dialog = new ProgressDialog(this, R.style.MyTheme);
+        mDialog = new ProgressDialog(dialog);
+        mDialog.setMessage("加载中...");
+        mDialog.setCancelable(true);
     }
 
     public void onShow() {
