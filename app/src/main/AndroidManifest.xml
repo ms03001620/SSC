@@ -13,6 +13,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".SplashActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.StatusBarDark">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,15 +23,19 @@
         </activity>
         <activity
             android:name=".LoginActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".RegActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.StatusBarDark" />
         <activity
             android:name=".SettingActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.StatusBarDark" />
     </application>
 
