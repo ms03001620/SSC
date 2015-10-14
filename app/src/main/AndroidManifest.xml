@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/AppTheme.NoActionBar.StatusBarDark">
+            android:theme="@style/AppTheme.StatusBarDark">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,16 +22,16 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".RegActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar.StatusBarDark" />
+            android:theme="@style/AppTheme.StatusBarDark" />
         <activity
             android:name=".SettingActivity"
-            android:theme="@style/AppTheme.NoActionBar.StatusBarDark" />
+            android:theme="@style/AppTheme.StatusBarDark" />
     </application>
 
 </manifest>
