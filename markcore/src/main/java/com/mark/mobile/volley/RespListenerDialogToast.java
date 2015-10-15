@@ -12,6 +12,7 @@ public abstract class RespListenerDialogToast<T> extends RespListenerToast<T> {
         mDialog = new ProgressDialog(dialog);
         mDialog.setMessage("加载中...");
         mDialog.setCancelable(true);
+        mDialog.setCanceledOnTouchOutside(false);
     }
 
     public void onShow() {
