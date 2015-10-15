@@ -24,7 +24,7 @@
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme.StatusBarDark" />
         <activity
             android:name=".RegActivity"
             android:screenOrientation="portrait"
