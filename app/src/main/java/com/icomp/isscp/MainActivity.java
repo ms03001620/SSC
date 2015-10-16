@@ -33,10 +33,10 @@ public class MainActivity extends BaseActivity implements WebFragment.OnFragment
 
     private String[] urls = new String[]{
             "http://dldx.test.sigilsoft.com/UserService/TokenLogin?TokenID=",
-            "",
-            "",
-            "",
-            ""
+            "http://dldx.demo.sigilsoft.com/mob/Movement_record.html",
+            "http://dldx.demo.sigilsoft.com/mob/Competition.html",
+            "http://dldx.demo.sigilsoft.com/mob/Community_management.html",
+            "http://dldx.demo.sigilsoft.com/mob/My.html"
     };
 
     @Override
@@ -44,9 +44,9 @@ public class MainActivity extends BaseActivity implements WebFragment.OnFragment
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("");
+        //toolbar.setTitle("");
         TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
-        mTitle.setText("你们好");
+        mTitle.setText("");
         setSupportActionBar(toolbar);
         mUser = getIntent().getParcelableExtra("data-user");
         mFgr = getSupportFragmentManager();
