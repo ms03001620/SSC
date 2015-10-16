@@ -9,6 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:layout_marginLeft="@dimen/activity_horizontal_margin2x"
         android:layout_marginRight="@dimen/activity_horizontal_margin2x"
         android:orientation="vertical">
@@ -23,21 +25,20 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
+            android:layout_marginTop="12dp"
             android:gravity="center"
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="4dp"
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:layout_marginLeft="5dp"
                 android:src="@drawable/icon_user" />
 
             <EditText
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/icon_edit_margin"
                 android:hint="学号"
                 android:singleLine="true" />
 
@@ -46,18 +47,20 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:gravity="center"
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="4dp"
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:layout_marginLeft="5dp"
                 android:src="@drawable/icon_lock" />
 
             <EditText
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/icon_edit_margin"
                 android:hint="密码"
                 android:password="true"
                 android:singleLine="true" />
