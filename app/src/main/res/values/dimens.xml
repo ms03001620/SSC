@@ -14,5 +14,6 @@
     <!--service dimens -->
     <dimen name="icon_size">20dp</dimen>
     <dimen name="icon_edit_margin">5dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
 
 </resources>

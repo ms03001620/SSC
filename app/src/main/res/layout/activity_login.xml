@@ -36,7 +36,7 @@
                 android:src="@drawable/icon_user" />
 
             <EditText
-                android:layout_width="120dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/icon_edit_margin"
                 android:hint="学号"
@@ -58,7 +58,7 @@
                 android:src="@drawable/icon_lock" />
 
             <EditText
-                android:layout_width="120dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/icon_edit_margin"
                 android:hint="密码"
@@ -68,6 +68,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/text_forget"
             style="@style/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

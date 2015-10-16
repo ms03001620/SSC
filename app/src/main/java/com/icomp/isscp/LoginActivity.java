@@ -26,6 +26,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.text_forget).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, PwdForgetActivity.class));
+            }
+        });
+
         findViewById(R.id.btn_login).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
