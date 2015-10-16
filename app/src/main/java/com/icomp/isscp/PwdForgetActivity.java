@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.icomp.isscp.resp.RespLogin;
+import com.mark.mobile.utils.StringUtils;
 import com.mark.mobile.volley.RespListenerDialogToast;
 
 public class PwdForgetActivity extends BaseActivity {
@@ -37,6 +38,11 @@ public class PwdForgetActivity extends BaseActivity {
             public void onClick(final View v) {
                 if (TextUtils.isEmpty(mEditMail.getText()) || TextUtils.isEmpty(mEditId.getText())|| TextUtils.isEmpty(mEditName.getText())) {
                     Toast.makeText(PwdForgetActivity.this, "请填写完整信息", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (!StringUtils.isEmail(mEditMail.getText().toString())) {
+                    Toast.makeText(PwdForgetActivity.this, "请填写正确的电子邮件地址", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
