@@ -3,43 +3,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/reg_bg"
     android:fitsSystemWindows="false"
     tools:context=".LoginActivity">
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginLeft="@dimen/activity_horizontal_margin2x"
         android:layout_marginRight="@dimen/activity_horizontal_margin2x"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <ImageView
-            android:layout_marginTop="60dp"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_gravity="center"
+            android:layout_marginTop="60dp"
             android:src="@drawable/logo" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:gravity="center"
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_marginLeft="4dp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:layout_marginLeft="4dp"
                 android:src="@drawable/icon_user" />
 
             <EditText
-                android:singleLine="true"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:hint="学号" />
+                android:hint="学号"
+                android:singleLine="true" />
 
         </LinearLayout>
 
@@ -50,21 +50,22 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_marginLeft="4dp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:layout_marginLeft="4dp"
                 android:src="@drawable/icon_lock" />
 
             <EditText
-                android:singleLine="true"
-                android:password="true"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:hint="密码" />
+                android:hint="密码"
+                android:password="true"
+                android:singleLine="true" />
 
         </LinearLayout>
 
         <TextView
+            style="@style/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -72,19 +73,22 @@
             android:text="忘记密码?" />
 
         <Button
-            android:layout_marginTop="20dp"
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:text="登录" />
 
         <TextView
             android:id="@+id/text_reg"
+            style="@style/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="30dp"
             android:text="还没有帐号?去注册" />
     </LinearLayout>
+
+
 </ScrollView>
