@@ -63,4 +63,10 @@ public class PreferencesUtils {
 		editor.commit();
 	}
 
+	public static void remove(String key) {
+		Editor editor = instance.sharedPreferences.edit();
+		editor.remove(key);
+		editor.commit();
+	}
+
 }
