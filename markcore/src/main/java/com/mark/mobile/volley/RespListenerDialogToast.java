@@ -7,12 +7,15 @@ import android.content.Context;
 public abstract class RespListenerDialogToast<T> extends RespListenerToast<T> {
     private ProgressDialog mDialog;
 
-    public RespListenerDialogToast(Context dialog){
-        //ProgressDialog dialog = new ProgressDialog(this, R.style.MyTheme);
-        mDialog = new ProgressDialog(dialog);
-        mDialog.setMessage("加载中...");
+    public RespListenerDialogToast(Context context, String message){
+        mDialog = new ProgressDialog(context);
+        mDialog.setMessage(message);
         mDialog.setCancelable(true);
         mDialog.setCanceledOnTouchOutside(false);
+    }
+
+    public RespListenerDialogToast(Context context){
+        this(context, "正在提交服务器，请稍后...");
     }
 
     public void onShow() {
