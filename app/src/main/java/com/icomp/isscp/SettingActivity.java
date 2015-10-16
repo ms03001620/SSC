@@ -1,7 +1,10 @@
 package com.icomp.isscp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -27,6 +30,18 @@ public class SettingActivity extends BaseActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         ListView listview = (ListView)findViewById(R.id.list);
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        startActivity(new Intent(SettingActivity.this, PwdChangeActivity.class));
+                        break;
+                    case 1:
+                        break;
+                }
+            }
+        });
 
         List<HashMap<String,Object>> data = new ArrayList<HashMap<String,Object>>();
         HashMap<String,Object> item1 = new HashMap<>();
