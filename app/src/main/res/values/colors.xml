@@ -6,4 +6,5 @@
     <color name="windowBackground">#f4f4f4</color>
 
     <color name="write99">#99FFFFFF</color>
+    <color name="gray">#888888</color>
 </resources>

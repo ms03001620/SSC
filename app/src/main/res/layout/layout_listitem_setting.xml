@@ -9,6 +9,7 @@
         android:id="@+id/text_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/gray"
         android:layout_centerVertical="true"
         android:text="项目一" />
 
