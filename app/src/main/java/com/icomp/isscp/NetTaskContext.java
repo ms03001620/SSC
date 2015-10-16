@@ -51,5 +51,25 @@ public class NetTaskContext {
         bus.addToRequestQueue(request);
     }
 
+    /**
+     * UserService/SetUserReg   参数StudentNo(id)，Email，Name，Pwd
+     * @param id
+     * @param email
+     * @param name
+     * @param pwd
+     * @param listener
+     * @param <T>
+     */
+    public <T> void reg(String id, String email, String name, String pwd, RespListenerToast listener) {
+        Map<String, String> param = new HashMap<>();
+        param.put("StudentNo", email);
+        param.put("Email", email);
+        param.put("Name", email);
+        param.put("Pwd", email);
+
+        GsonRequest<T> request = new GsonRequest<T>(HOST + "UserService/SetUserReg", listener, RespLogin.class, param);
+        bus.addToRequestQueue(request);
+    }
+
 
 }
