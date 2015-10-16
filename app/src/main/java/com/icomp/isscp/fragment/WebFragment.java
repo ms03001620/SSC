@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,8 +27,8 @@ public class WebFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private String mParam1;
-    private RespLogin mParam2;
+    private String mUrl;
+    private RespLogin mUser;
     private OnFragmentInteractionListener mListener;
     private WebView webview;
     private ProgressBar progressBar;
@@ -49,8 +50,8 @@ public class WebFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getParcelable(ARG_PARAM2);
+            mUrl = getArguments().getString(ARG_PARAM1);
+            mUser = getArguments().getParcelable(ARG_PARAM2);
         }
     }
 
@@ -83,8 +84,11 @@ public class WebFragment extends Fragment {
             }
         });
 
-        LogUtils.paintD("loadUrl:",mParam1);
-        webview.loadUrl(mParam1);
+        String realUrl = makeRealUrl(mUrl, mUser);
+        LogUtils.paintD("loadUrl:", realUrl);
+        if(!TextUtils.isEmpty(mUrl)){
+            webview.loadUrl(realUrl);
+        }
         return view;
     }
 
@@ -144,4 +148,11 @@ public class WebFragment extends Fragment {
         manager.cancel(100159);
     }
 
+
+    public String makeRealUrl(String url, RespLogin user){
+        StringBuffer sb = new StringBuffer();
+        sb.append(url);
+        sb.append(user.getReData());
+        return sb.toString();
+    }
 }
