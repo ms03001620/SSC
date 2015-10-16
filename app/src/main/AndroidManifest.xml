@@ -37,6 +37,10 @@
             android:name=".SettingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.StatusBarDark" />
+        <activity
+            android:name=".ForgetPwdActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.bg"/>
     </application>
 
 </manifest>
