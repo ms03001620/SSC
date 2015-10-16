@@ -41,4 +41,15 @@ public class NetTaskContext {
         GsonRequest<T> request = new GsonRequest<T>(HOST + "UserService/UserLogin", listener, RespLogin.class, param);
         bus.addToRequestQueue(request);
     }
+
+    public <T> void findPwd(String email, String id, String name, RespListenerToast listener) {
+        Map<String, String> param = new HashMap<>();
+        param.put("Email", email);
+        param.put("StudentNo", id);
+        param.put("Name", name);
+        GsonRequest<T> request = new GsonRequest<T>(HOST + "UserService/SetForgetPwd", listener, RespLogin.class, param);
+        bus.addToRequestQueue(request);
+    }
+
+
 }
