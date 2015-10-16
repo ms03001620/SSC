@@ -62,10 +62,10 @@ public class NetTaskContext {
      */
     public <T> void reg(String id, String email, String name, String pwd, RespListenerToast listener) {
         Map<String, String> param = new HashMap<>();
-        param.put("StudentNo", email);
+        param.put("StudentNo", id);
         param.put("Email", email);
-        param.put("Name", email);
-        param.put("Pwd", email);
+        param.put("Name", name);
+        param.put("Pwd", pwd);
 
         GsonRequest<T> request = new GsonRequest<T>(HOST + "UserService/SetUserReg", listener, RespLogin.class, param);
         bus.addToRequestQueue(request);

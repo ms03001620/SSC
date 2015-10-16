@@ -42,6 +42,7 @@
                     android:src="@drawable/icon_user" />
 
                 <EditText
+                    android:id="@+id/edit_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/icon_edit_margin"
@@ -64,6 +65,7 @@
                     android:src="@drawable/icon_user" />
 
                 <EditText
+                    android:id="@+id/edit_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/icon_edit_margin"
@@ -86,6 +88,7 @@
                     android:src="@drawable/icon_email" />
 
                 <EditText
+                    android:id="@+id/edit_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/icon_edit_margin"
@@ -107,6 +110,7 @@
                     android:src="@drawable/icon_lock" />
 
                 <EditText
+                    android:id="@+id/edit_pwd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/icon_edit_margin"
@@ -128,6 +132,7 @@
                     android:src="@drawable/icon_lock_ok" />
 
                 <EditText
+                    android:id="@+id/edit_pwd_ok"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/icon_edit_margin"
@@ -137,7 +142,7 @@
 
 
             <CheckBox
-                android:id="@+id/check_private"
+                android:id="@+id/check_license"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"

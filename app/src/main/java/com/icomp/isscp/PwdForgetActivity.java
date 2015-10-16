@@ -44,9 +44,11 @@ public class PwdForgetActivity extends BaseActivity {
                    @Override
                    public void onResponse(RespLogin resp) {
                        if (!resp.isError()) {
+                           Toast.makeText(PwdForgetActivity.this, resp.getReMsg(), Toast.LENGTH_LONG).show();
                            finish();
+                       }else{
+                           Snackbar.make(v, resp.getReMsg(), Snackbar.LENGTH_LONG).show();
                        }
-                       Snackbar.make(v, resp.getReMsg(), Snackbar.LENGTH_LONG).show();
                    }
                });
             }
