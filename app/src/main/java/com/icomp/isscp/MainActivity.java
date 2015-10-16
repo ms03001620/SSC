@@ -1,5 +1,6 @@
 package com.icomp.isscp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -31,11 +32,11 @@ public class MainActivity extends BaseActivity implements WebFragment.OnFragment
     };*/
 
     private String[] urls = new String[]{
-            "http://www.baidu.com",
-            "http://www.sina.com.cn",
-            "http://www.qq.com",
-            "http://www.taobao.com",
-            "http://github.com"
+            "http://dldx.test.sigilsoft.com/UserService/TokenLogin?TokenID=",
+            "",
+            "",
+            "",
+            ""
     };
 
     @Override
@@ -139,7 +140,7 @@ public class MainActivity extends BaseActivity implements WebFragment.OnFragment
         if (id == R.id.action_settings) {
             Intent intent = new Intent(MainActivity.this, SettingActivity.class);
             intent.putExtra("data-user", mUser);
-            startActivity(intent);
+            startActivityForResult(intent, 10010);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -147,5 +148,19 @@ public class MainActivity extends BaseActivity implements WebFragment.OnFragment
 
     @Override
     public void onFragmentInteraction(Uri uri) {
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode!= Activity.RESULT_OK){
+            return;
+        }
+        switch(requestCode){
+            case 10010:
+                finish();
+                break;
+        }
+
     }
 }
