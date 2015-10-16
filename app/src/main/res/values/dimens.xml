@@ -7,7 +7,7 @@
 
 
     <!--Tab dimens -->
-    <dimen name="tab_icon_size">28dp</dimen>
+    <dimen name="tab_icon_size">22dp</dimen>
     <dimen name="tab_spacing">2dp</dimen>
     <dimen name="tab_height">55dp</dimen>
 
