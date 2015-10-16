@@ -34,6 +34,13 @@ public class NetTaskContext {
         return instance;
     }
 
+    /**
+     * 登录接口 ： UserService/UserLogin 参数 StudentNo(id)，Pwd
+     * @param id
+     * @param pwd
+     * @param listener
+     * @param <T>
+     */
     public <T> void doLogin(String id, String pwd, RespListenerToast listener) {
         Map<String, String> param = new HashMap<>();
         param.put("StudentNo", id);
@@ -42,6 +49,14 @@ public class NetTaskContext {
         bus.addToRequestQueue(request);
     }
 
+    /**
+     * 找回密码： UserService/SetForgetPwd 参数Email，StudentNo(id)，Name
+     * @param email
+     * @param id
+     * @param name
+     * @param listener
+     * @param <T>
+     */
     public <T> void findPwd(String email, String id, String name, RespListenerToast listener) {
         Map<String, String> param = new HashMap<>();
         param.put("Email", email);
@@ -71,5 +86,18 @@ public class NetTaskContext {
         bus.addToRequestQueue(request);
     }
 
-
+    /**
+     * 修改密码 UserService/SetRePwd 参数TokenID，Pwd
+     * @param token
+     * @param pwd
+     * @param listener
+     * @param <T>
+     */
+    public <T> void resetPwd(String token, String pwd, RespListenerToast listener) {
+        Map<String, String> param = new HashMap<>();
+        param.put("TokenID", token);
+        param.put("Pwd", pwd);
+        GsonRequest<T> request = new GsonRequest<T>(HOST + "UserService/SetRePwd", listener, RespLogin.class, param);
+        bus.addToRequestQueue(request);
+    }
 }

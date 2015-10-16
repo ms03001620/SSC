@@ -137,7 +137,9 @@ public class MainActivity extends BaseActivity implements WebFragment.OnFragment
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
-            startActivity(new Intent(MainActivity.this, SettingActivity.class));
+            Intent intent = new Intent(MainActivity.this, SettingActivity.class);
+            intent.putExtra("data-user", mUser);
+            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);

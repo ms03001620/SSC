@@ -42,9 +42,11 @@
                     android:src="@drawable/icon_lock" />
 
                 <EditText
+                    android:id="@+id/edit_pwd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/icon_edit_margin"
+                    android:password="true"
                     android:hint="设置登录密码"
                     android:singleLine="true" />
             </LinearLayout>
@@ -63,16 +65,18 @@
                     android:src="@drawable/icon_lock_ok" />
 
                 <EditText
+                    android:id="@+id/edit_pwd_ok"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/icon_edit_margin"
+                    android:password="true"
                     android:hint="确认登录密码"
                     android:singleLine="true" />
             </LinearLayout>
 
             <Button
                 android:layout_marginTop="12dp"
-                android:id="@+id/btn_reg"
+                android:id="@+id/btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="确认修改" />

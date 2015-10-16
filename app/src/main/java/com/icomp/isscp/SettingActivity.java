@@ -9,17 +9,21 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.icomp.isscp.resp.RespLogin;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class SettingActivity extends BaseActivity {
 
+    private RespLogin mUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
-
+        mUser = getIntent().getParcelableExtra("data-user");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("");
         TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
@@ -35,7 +39,9 @@ public class SettingActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        startActivity(new Intent(SettingActivity.this, PwdChangeActivity.class));
+                        Intent intent = new Intent(SettingActivity.this, PwdChangeActivity.class);
+                        intent.putExtra("data-user", mUser);
+                        startActivity(intent);
                         break;
                     case 1:
                         break;

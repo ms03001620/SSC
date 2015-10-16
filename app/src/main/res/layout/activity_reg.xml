@@ -114,6 +114,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/icon_edit_margin"
+                    android:password="true"
                     android:hint="设置登录密码"
                     android:singleLine="true" />
             </LinearLayout>
@@ -137,6 +138,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/icon_edit_margin"
                     android:hint="确认登录密码"
+                    android:password="true"
                     android:singleLine="true" />
             </LinearLayout>
 
