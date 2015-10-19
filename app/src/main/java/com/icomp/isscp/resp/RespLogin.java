@@ -67,4 +67,16 @@ public class RespLogin implements Parcelable{
         dest.writeString(ReData);
         dest.writeString(ReMsg);
     }
+
+    @Override
+    public String toString() {
+        return "RespLogin{" +
+                "isError=" + isError +
+                ", ReData='" + ReData + '\'' +
+                ", ReMsg='" + ReMsg + '\'' +
+                '}';
+    }
+
+
+
 }
