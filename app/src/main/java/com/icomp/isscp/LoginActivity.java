@@ -60,14 +60,14 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(RespLogin resp) {
                         if (!resp.isError()) {
-                            //PreferencesUtils.putString("data-userid", mEditId.getText().toString());
-                            //PreferencesUtils.putString("data-json-string", new Gson().toJson(resp));
+                            PreferencesUtils.putString("data-userid", mEditId.getText().toString());
+                            PreferencesUtils.putString("data-json-string", new Gson().toJson(resp));
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             intent.putExtra("data-user", resp);
 
-                            Toast.makeText(LoginActivity.this, resp.toString(), 0).show();
-                            //startActivity(intent);
-                            //finish();
+                            //Toast.makeText(LoginActivity.this, resp.toString(), 0).show();
+                            startActivity(intent);
+                            finish();
                         } else {
                             Snackbar.make(v, resp.getReMsg(), Snackbar.LENGTH_LONG).show();
                         }
