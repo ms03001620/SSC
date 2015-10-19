@@ -15,3 +15,18 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+-libraryjars libs/gson-2.2.1.jar
+-dontwarn com.google.gson.*
+-keep class com.google.gson.** { *;}
+-keep interface com.google.gson.** { *; }
+
+
+-libraryjars libs/volley.jar
+-dontwarn com.android.volley.*
+-keep class com.android.volley.** { *;}
+-keep interface com.android.volley.** { *; }
+
+
+-keep class android.support.v4.** { *; }
+-keep interface android.support.v4.app.** { *; }
