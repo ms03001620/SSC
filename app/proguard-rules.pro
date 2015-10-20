@@ -17,10 +17,4 @@
 #}
 
 
-
--libraryjars markcore/libs/gson-2.2.1.jar
--libraryjars markcore/libs/volley.jar
-
--keep class android.support.design.** { *; }
--keep interface android.support.design.** { *; }
--keep public class android.support.design.R$* { *; }
+-keep class com.icomp.isscp.resp.** { *; }
