@@ -64,8 +64,6 @@ public class LoginActivity extends AppCompatActivity {
                             PreferencesUtils.putString("data-json-string", new Gson().toJson(resp));
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             intent.putExtra("data-user", resp);
-
-                            //Toast.makeText(LoginActivity.this, resp.toString(), 0).show();
                             startActivity(intent);
                             finish();
                         } else {
