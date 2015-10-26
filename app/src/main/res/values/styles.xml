@@ -4,11 +4,11 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorPrimary</item>
         <item name="android:windowBackground">@color/windowBackground</item>
         <item name="android:textColorPrimary">@android:color/white</item>
-        <item name="android:textColorSecondary">@android:color/white</item>
         <item name="android:textColorTertiary">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
         <item name="android:textColorHint">@color/write99</item>
 
         <item name="windowActionBar">false</item>
@@ -18,7 +18,7 @@
         <item name="buttonStyle">@style/default_button</item>
         <item name="editTextStyle">@style/editTextStyle</item>
 
-<!--        <item name="checkboxStyle">@style/default_checkbox</item>-->
+        <item name="android:alertDialogTheme">@style/progressDialog</item>
     </style>
 
     <style name="AppTheme" parent="Theme.Base">
@@ -65,9 +65,6 @@
         <item name="android:clickable">true</item>
     </style>
 
-    <style name="default_checkbox" parent="@android:style/Widget.CompoundButton.CheckBox">
-        <item name="android:button">@drawable/btn_check_holo_dark</item>
-    </style>
 
     <style name="text">
         <item name="android:textSize">16dp</item>
@@ -75,6 +72,9 @@
     </style>
 
 
-
+    <style name="progressDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:textColorSecondary">@color/gray</item>
+    </style>
 
 </resources>
