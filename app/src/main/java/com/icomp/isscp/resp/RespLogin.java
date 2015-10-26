@@ -14,6 +14,12 @@ public class RespLogin implements Parcelable{
     private String ReData;
     private String ReMsg;
 
+    public RespLogin() {
+        isError = false;
+        ReData ="DE896DF9-5719-4190-B696-73FE4F9CEE71";
+        ReMsg= "登录成功！";
+    }
+
     protected RespLogin(Parcel in) {
         isError = in.readByte() != 0;
         ReData = in.readString();
