@@ -75,6 +75,7 @@
     <style name="progressDialog" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorAccent">@color/colorPrimary</item>
         <item name="android:textColorSecondary">@color/gray</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
 </resources>
