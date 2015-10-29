@@ -12,7 +12,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.icomp.isscp.resp.RespLogin;
-import com.mark.mobile.utils.PreferencesUtils;
+import com.mark.mobile.volley.RespListenerDialogToast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -74,10 +74,15 @@ public class SettingActivity extends BaseActivity {
                 mSubmitDialog.setButton(DialogInterface.BUTTON_POSITIVE, "确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        PreferencesUtils.remove("data-json-string");
-                        startActivity(new Intent(SettingActivity.this, LoginActivity.class));
-                        setResult(RESULT_OK);
-                        finish();
+                        NetTaskContext.getInstance().doTokenLogout(mUser.getReData(), new RespListenerDialogToast<RespLogin>(SettingActivity.this) {
+                            @Override
+                            public void onResponse(RespLogin resp) {
+                                if (!resp.isError()) {
+                                    setResult(RESULT_OK);
+                                    finish();
+                                }
+                            }
+                        });
                     }
                 });
 
