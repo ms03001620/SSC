@@ -93,10 +93,10 @@ public class WebFragment extends Fragment {
     }
 
     public boolean onBackPressed(){
-        if(webview.canGoBack()){
+/*        if(webview.canGoBack()){
             webview.goBack();
             return true;
-        }
+        }*/
         return false;
     }
 
@@ -150,9 +150,6 @@ public class WebFragment extends Fragment {
 
 
     public String makeRealUrl(String url, RespLogin user){
-        if(!"http://dldx.test.sigilsoft.com/UserService/TokenLogin?TokenID=".equals(url)){
-            return url;
-        }
         StringBuffer sb = new StringBuffer();
         sb.append(url);
         sb.append(user.getReData());
