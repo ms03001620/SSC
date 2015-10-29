@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.webkit.WebView;
 import android.widget.Toast;
 
 import com.icomp.isscp.fragment.WebFragment;
@@ -22,6 +23,7 @@ public class MainActivity extends BaseActivity implements WebFragment.OnFragment
     private FragmentTransaction mFragmentTransaction;
 
     private String[] urls = new String[]{
+            "http://dldx.mob.sigilsoft.com/UserService/TokenLogin?TokenID=",
         "http://dldx.mob.sigilsoft.com/Main/Index",
         "http://dldx.mob.sigilsoft.com/Movement/Index",
         "http://dldx.mob.sigilsoft.com/EventActivity/Index",
@@ -98,6 +100,9 @@ public class MainActivity extends BaseActivity implements WebFragment.OnFragment
                 Snackbar.make(getWindow().getDecorView(), resp.getReMsg(), Snackbar.LENGTH_LONG).show();
             }
         });
+
+        WebView sv = new WebView(this);
+        sv.loadUrl("http://dldx.mob.sigilsoft.com/UserService/TokenLogin?TokenID="+mUser.getReData());
     }
 
     private long backTime = 0;
