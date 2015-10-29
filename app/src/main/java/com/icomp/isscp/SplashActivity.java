@@ -10,42 +10,30 @@ import com.google.gson.Gson;
 import com.icomp.isscp.resp.RespLogin;
 import com.mark.mobile.utils.PreferencesUtils;
 
-import java.lang.ref.WeakReference;
-
 public class SplashActivity extends BaseActivity {
 
-    private UIHandler mHandler = null;
+    private Handler mHandler = null;
     private final static int ACTION_ENTER_MAIN = 30010;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        mHandler = new UIHandler(new WeakReference<>(this));
-        mHandler.sendEmptyMessageDelayed(ACTION_ENTER_MAIN, 2000);
-    }
-
-    private static class UIHandler extends Handler {
-        public WeakReference<SplashActivity> mActivity;
-        public UIHandler(WeakReference<SplashActivity> activity) {
-            this.mActivity = activity;
-        }
-
-        @Override
-        public void handleMessage(Message msg) {
-            final SplashActivity activity = mActivity.get();
-            switch (msg.what) {
-                case ACTION_ENTER_MAIN:
-                    if (activity.hasLogined()) {
-                        activity.goMainPage();
-                    } else {
-                        activity.goMainLogin();
-                    }
-                    activity.finish();
-                    break;
+        mHandler = new Handler(getMainLooper(), new Handler.Callback() {
+            public boolean handleMessage(Message message) {
+                switch(message.what){
+                    case ACTION_ENTER_MAIN:
+                        if(hasLogined()){
+                            goMainPage();
+                        }else{
+                            goMainLogin();
+                        }
+                        return true;
+                }
+                return false;
             }
-            super.handleMessage(msg);
-        }
+        });
+        mHandler.sendEmptyMessageDelayed(ACTION_ENTER_MAIN, 2000);
     }
 
     private boolean hasLogined(){
