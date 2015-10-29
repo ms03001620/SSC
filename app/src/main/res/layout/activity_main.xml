@@ -6,22 +6,11 @@
     android:fitsSystemWindows="true"
     tools:context="com.icomp.isscp.MainActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbarlayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <include layout="@layout/layout_toolbar" />
-    </android.support.design.widget.AppBarLayout>
-
-
     <FrameLayout
         android:id="@+id/frLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/tabs"
-        android:layout_below="@+id/appbarlayout" />
+        android:layout_above="@+id/tabs" />
 
 
     <android.support.design.widget.TabLayout
