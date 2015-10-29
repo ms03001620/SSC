@@ -51,10 +51,12 @@ public class SplashActivity extends BaseActivity {
         Intent intent = new Intent(SplashActivity.this, MainActivity.class);
         intent.putExtra("data-user", login);
         startActivity(intent);
+        finish();
     }
 
     private void goMainLogin() {
         startActivity(new Intent(this, LoginActivity.class));
+        finish();
     }
 
     @Override
