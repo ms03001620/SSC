@@ -10,8 +10,10 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
@@ -19,6 +21,7 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 import com.icomp.isscp.R;
+import com.icomp.isscp.SettingActivity;
 import com.icomp.isscp.resp.RespLogin;
 import com.mark.mobile.utils.LogUtils;
 
@@ -58,6 +61,28 @@ public class WebFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_web, container, false);
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        toolbar.inflateMenu(R.menu.menu_main);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                int id = item.getItemId();
+                if (id == R.id.action_settings) {
+                    Intent intent = new Intent(getActivity(), SettingActivity.class);
+                    intent.putExtra("data-user", mUser);
+                    getActivity().startActivityForResult(intent, 10010);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        if(mUrl.endsWith("My/Index")){
+            view.findViewById(R.id.appbarlayout).setVisibility(View.VISIBLE);
+        }else{
+            view.findViewById(R.id.appbarlayout).setVisibility(View.GONE);
+        }
+
         manager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
         webview = (WebView)view.findViewById(R.id.webview);
         progressBar = (ProgressBar)view.findViewById(R.id.progressbar);
@@ -66,6 +91,7 @@ public class WebFragment extends Fragment {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
                 return true;
+                //http://stackoverflow.com/questions/5116909/how-i-can-get-onclick-event-on-webview-in-android
             }
 
             public void onPageFinished(WebView view, String url) {
@@ -150,6 +176,11 @@ public class WebFragment extends Fragment {
 
 
     public String makeRealUrl(String url, RespLogin user){
+        if(!"http://dldx.mob.sigilsoft.com/UserService/TokenLogin?TokenID=".equals(url)){
+            return url;
+        }
+
+
         StringBuffer sb = new StringBuffer();
         sb.append(url);
         sb.append(user.getReData());

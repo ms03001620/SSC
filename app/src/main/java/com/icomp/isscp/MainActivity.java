@@ -4,18 +4,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.icomp.isscp.fragment.WebFragment;
 import com.icomp.isscp.resp.RespLogin;
 import com.mark.mobile.utils.LogUtils;
+import com.mark.mobile.volley.RespListenerDialogToast;
 
 public class MainActivity extends BaseActivity implements WebFragment.OnFragmentInteractionListener {
     private RespLogin mUser;
@@ -23,31 +21,18 @@ public class MainActivity extends BaseActivity implements WebFragment.OnFragment
     private FragmentManager mFgr;
     private FragmentTransaction mFragmentTransaction;
 
-/*    private String[] urls = new String[]{
-            "http://dldx.test.sigilsoft.com/",
-            "http://dldx.demo.sigilsoft.com/mob/Movement_record.html",
-            "http://dldx.demo.sigilsoft.com/mob/Competition.html",
-            "http://dldx.demo.sigilsoft.com/mob/Community_management.html",
-            "http://dldx.demo.sigilsoft.com/mob/My.html"
-    };*/
-
     private String[] urls = new String[]{
-            "http://dldx.test.sigilsoft.com/UserService/TokenLogin?TokenID=",
-            "http://dldx.demo.sigilsoft.com/mob/Movement_record.html",
-            "http://dldx.demo.sigilsoft.com/mob/Competition.html",
-            "http://dldx.demo.sigilsoft.com/mob/Community_management.html",
-            "http://dldx.demo.sigilsoft.com/mob/My.html"
+        "http://dldx.mob.sigilsoft.com/Main/Index",
+        "http://dldx.mob.sigilsoft.com/Movement/Index",
+        "http://dldx.mob.sigilsoft.com/EventActivity/Index",
+        "http://dldx.mob.sigilsoft.com/CarveOutCommunity/Index",
+        "http://dldx.mob.sigilsoft.com/My/Index"
     };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //toolbar.setTitle("");
-        TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
-        mTitle.setText("");
-        setSupportActionBar(toolbar);
         mUser = getIntent().getParcelableExtra("data-user");
         mFgr = getSupportFragmentManager();
 
@@ -106,6 +91,13 @@ public class MainActivity extends BaseActivity implements WebFragment.OnFragment
         tabLayout.addTab(part);
         tabLayout.addTab(comm);
         tabLayout.addTab(mine);
+
+        NetTaskContext.getInstance().doTokenLogin(mUser.getReData(), new RespListenerDialogToast<RespLogin>(this) {
+            @Override
+            public void onResponse(RespLogin resp) {
+                Snackbar.make(getWindow().getDecorView(), resp.getReMsg(), Snackbar.LENGTH_LONG).show();
+            }
+        });
     }
 
     private long backTime = 0;
@@ -122,29 +114,11 @@ public class MainActivity extends BaseActivity implements WebFragment.OnFragment
         if (past < 3000) {
             finish();
         } else {
-            Toast.makeText(this, "再按退出", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "再点击一次返回键退出", Toast.LENGTH_SHORT).show();
         }
         backTime = now;
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            Intent intent = new Intent(MainActivity.this, SettingActivity.class);
-            intent.putExtra("data-user", mUser);
-            startActivityForResult(intent, 10010);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     public void onFragmentInteraction(Uri uri) {
@@ -158,9 +132,8 @@ public class MainActivity extends BaseActivity implements WebFragment.OnFragment
         }
         switch(requestCode){
             case 10010:
-                finish();
+                logout();
                 break;
         }
-
     }
 }

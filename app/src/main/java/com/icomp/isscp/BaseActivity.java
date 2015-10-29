@@ -9,9 +9,9 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.RemoteViews;
 
 import com.mark.mobile.utils.LogUtils;
+import com.mark.mobile.utils.PreferencesUtils;
 
 public class BaseActivity extends AppCompatActivity {
     NotificationManager manager;
@@ -56,6 +56,14 @@ public class BaseActivity extends AppCompatActivity {
 
     public void dismissNotifyLoading() {
         manager.cancel(100159);
+    }
+
+
+    public void logout(){
+        PreferencesUtils.remove("data-json-string");
+        startActivity(new Intent(this, LoginActivity.class));
+        setResult(RESULT_OK);
+        finish();
     }
 
 
