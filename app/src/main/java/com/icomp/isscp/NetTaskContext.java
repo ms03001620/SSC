@@ -13,7 +13,7 @@ public class NetTaskContext {
     /**
      * 测试
      */
-    private final static String HOST = "http://dldx.test.sigilsoft.com/";
+    private final static String HOST = "http://dldx.mob.sigilsoft.com/";
     /**
      * 正式
      */
@@ -46,6 +46,18 @@ public class NetTaskContext {
         param.put("StudentNo", id);
         param.put("Pwd", pwd);
         GsonRequest<T> request = new GsonRequest<T>(HOST + "UserService/UserLogin", listener, RespLogin.class, param);
+        bus.addToRequestQueue(request);
+    }
+
+    public <T> void doTokenLogin(String token, RespListenerToast listener) {
+        Map<String, String> param = new HashMap<>();
+        GsonRequest<T> request = new GsonRequest<T>(HOST + "UserService/TokenLogin?TokenID="+token, listener, RespLogin.class, param);
+        bus.addToRequestQueue(request);
+    }
+
+    public <T> void doTokenLogout(String token, RespListenerToast listener) {
+        Map<String, String> param = new HashMap<>();
+        GsonRequest<T> request = new GsonRequest<T>(HOST + "UserService/TokenLogout?TokenID="+token, listener, RespLogin.class, param);
         bus.addToRequestQueue(request);
     }
 
