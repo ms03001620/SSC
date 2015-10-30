@@ -55,13 +55,6 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "请填写帐号密码", Toast.LENGTH_SHORT).show();
                     return;
                 }
-/*                RespLogin resp = new RespLogin();
-                PreferencesUtils.putString("data-userid", mEditId.getText().toString());
-                PreferencesUtils.putString("data-json-string", new Gson().toJson(resp));
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                intent.putExtra("data-user", resp);
-                startActivity(intent);
-                if(true)return;*/
 
                 NetTaskContext.getInstance().doLogin(mEditId.getText().toString(), mEditPwd.getText().toString(), new RespListenerDialogToast<RespLogin>(LoginActivity.this) {
                     @Override
