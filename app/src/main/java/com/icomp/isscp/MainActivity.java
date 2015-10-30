@@ -2,31 +2,35 @@ package com.icomp.isscp;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.Toast;
 
+import com.icomp.isscp.fragment.BaseFragment;
 import com.icomp.isscp.fragment.WebFragment;
+import com.icomp.isscp.fragment.WebMineFragment;
 import com.icomp.isscp.resp.RespLogin;
 import com.mark.mobile.utils.LogUtils;
-import com.mark.mobile.volley.RespListenerDialogToast;
 
 public class MainActivity extends BaseActivity implements WebFragment.OnFragmentInteractionListener {
     private RespLogin mUser;
-    private WebFragment showCurrent;
+    private BaseFragment showCurrent;
     private FragmentManager mFgr;
     private FragmentTransaction mFragmentTransaction;
+    private long backTime = 0;
+
+    private final static String HOST = "http://dldx.mob.sigilsoft.com/";
 
     private String[] urls = new String[]{
-        "http://dldx.mob.sigilsoft.com/Main/Index",
-        "http://dldx.mob.sigilsoft.com/Movement/Index",
-        "http://dldx.mob.sigilsoft.com/EventActivity/Index",
-        "http://dldx.mob.sigilsoft.com/CarveOutCommunity/Index",
-        "http://dldx.mob.sigilsoft.com/My/Index"
+            HOST + "UserService/TokenLogin?TokenID=",
+            HOST + "Movement/Index",
+            HOST + "EventActivity/Index",
+            HOST + "CarveOutCommunity/Index",
+            HOST + "My/Index",
+            HOST + "UserService/TokenLogout?TokenID="
     };
 
     @Override
@@ -35,6 +39,8 @@ public class MainActivity extends BaseActivity implements WebFragment.OnFragment
         setContentView(R.layout.activity_main);
         mUser = getIntent().getParcelableExtra("data-user");
         mFgr = getSupportFragmentManager();
+        urls[0]+=mUser.getReData();
+        urls[5]+=mUser.getReData();
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
 
@@ -54,10 +60,16 @@ public class MainActivity extends BaseActivity implements WebFragment.OnFragment
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int position = tab.getPosition();
-
-                WebFragment current = (WebFragment) mFgr.findFragmentByTag("tag" + position);
+                BaseFragment current = (BaseFragment)mFgr.findFragmentByTag("tag" + position);
                 if (current == null) {
-                    current = WebFragment.newInstance(urls[position], mUser);
+                    switch(position){
+                        case 4:
+                            current = WebMineFragment.newInstance(urls[position]);
+                            break;
+                        default:
+                            current = WebFragment.newInstance(urls[position]);
+                            break;
+                    }
                 }
                 mFragmentTransaction = mFgr.beginTransaction();
                 if (!current.isAdded()) {
@@ -91,24 +103,10 @@ public class MainActivity extends BaseActivity implements WebFragment.OnFragment
         tabLayout.addTab(part);
         tabLayout.addTab(comm);
         tabLayout.addTab(mine);
-
-        NetTaskContext.getInstance().doTokenLogin(mUser.getReData(), new RespListenerDialogToast<RespLogin>(this) {
-            @Override
-            public void onResponse(RespLogin resp) {
-                Snackbar.make(getWindow().getDecorView(), resp.getReMsg(), Snackbar.LENGTH_LONG).show();
-            }
-        });
     }
 
-    private long backTime = 0;
     @Override
     public void onBackPressed() {
-        if(showCurrent!=null){
-            if(showCurrent.onBackPressed()){
-                return;
-            }
-        }
-
         long now = System.currentTimeMillis();
         long past = now - backTime;
         if (past < 3000) {
@@ -119,9 +117,18 @@ public class MainActivity extends BaseActivity implements WebFragment.OnFragment
         backTime = now;
     }
 
-
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void onFragmentInteraction(String url) {
+        LogUtils.paintD("shouldOverrideUrlLoading:", url);
+
+        if(url.endsWith("user/login")){
+            logout();
+        }
+        if(url.endsWith("app/action/setting")){
+            Intent intent = new Intent(MainActivity.this, SettingActivity.class);
+            intent.putExtra("data-user", mUser);
+            startActivityForResult(intent, 10010);
+        }
     }
 
     @Override
@@ -132,7 +139,7 @@ public class MainActivity extends BaseActivity implements WebFragment.OnFragment
         }
         switch(requestCode){
             case 10010:
-                logout();
+                showCurrent.onPageLoad(urls[5]);
                 break;
         }
     }

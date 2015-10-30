@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.icomp.isscp.resp.RespLogin;
 import com.mark.mobile.volley.RespListenerDialogToast;
@@ -47,6 +48,7 @@ public class SettingActivity extends BaseActivity {
                         startActivity(intent);
                         break;
                     case 1:
+                        Toast.makeText(SettingActivity.this, "清除缓存", Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
