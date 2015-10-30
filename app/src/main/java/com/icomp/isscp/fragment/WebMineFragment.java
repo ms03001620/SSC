@@ -12,12 +12,12 @@ import android.webkit.WebViewClient;
 import com.icomp.isscp.R;
 import com.mark.mobile.utils.LogUtils;
 
-public class WebFragment extends BaseFragment {
-    private static final String ARG_PARAM1 = "WebFragment.param";
+public class WebMineFragment extends BaseFragment {
+    private static final String ARG_PARAM1 = "WebMineFragment.param";
     private String mUrl;
 
-    public static WebFragment newInstance(String param1) {
-        WebFragment fragment = new WebFragment();
+    public static WebMineFragment newInstance(String param1) {
+        WebMineFragment fragment = new WebMineFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         fragment.setArguments(args);
@@ -34,10 +34,24 @@ public class WebFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mWebview = (WebView)inflater.inflate(R.layout.fragment_web, container, false);
+        View view = inflater.inflate(R.layout.fragment_web_mine, container, false);
+        final View setting = view.findViewById(R.id.action_setting);
+        setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onButtonPressed("app/action/setting");
+            }
+        });
+
+        mWebview = (WebView) view.findViewById(R.id.webview);
         mWebview.getSettings().setJavaScriptEnabled(true);
         mWebview.setWebViewClient(new WebViewClient() {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                if (url.endsWith("My/Index")) {
+                    setting.setVisibility(View.VISIBLE);
+                } else {
+                    setting.setVisibility(View.GONE);
+                }
                 onButtonPressed(url);
                 view.loadUrl(url);
                 return true;
@@ -52,7 +66,7 @@ public class WebFragment extends BaseFragment {
         if (!TextUtils.isEmpty(mUrl)) {
             mWebview.loadUrl(mUrl);
         }
-        return mWebview;
+        return view;
     }
 
 }
