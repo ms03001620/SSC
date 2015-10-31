@@ -119,10 +119,10 @@ public class MainActivity extends BaseActivity implements WebFragment.OnFragment
 
     @Override
     public void onFragmentInteraction(String url) {
-        LogUtils.paintD("shouldOverrideUrlLoading:", url);
-
+        LogUtils.paintD("onFragmentInteraction:", url);
         if(url.endsWith("user/login")){
             logout();
+            return;
         }
         if(url.endsWith("app/action/setting")){
             Intent intent = new Intent(MainActivity.this, SettingActivity.class);

@@ -76,15 +76,8 @@ public class SettingActivity extends BaseActivity {
                 mSubmitDialog.setButton(DialogInterface.BUTTON_POSITIVE, "确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        NetTaskContext.getInstance().doTokenLogout(mUser.getReData(), new RespListenerDialogToast<RespLogin>(SettingActivity.this) {
-                            @Override
-                            public void onResponse(RespLogin resp) {
-                                if (!resp.isError()) {
-                                    setResult(RESULT_OK);
-                                    finish();
-                                }
-                            }
-                        });
+                        setResult(RESULT_OK);
+                        finish();
                     }
                 });
 
