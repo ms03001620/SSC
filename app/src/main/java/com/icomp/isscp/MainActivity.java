@@ -20,7 +20,7 @@ public class MainActivity extends BaseActivity implements WebFragment.OnFragment
     private BaseFragment showCurrent;
     private FragmentManager mFgr;
     private FragmentTransaction mFragmentTransaction;
-    private long backTime = 0;
+    private long backTime;
 
     private final static String HOST = "http://dldx.mob.sigilsoft.com/";
 
