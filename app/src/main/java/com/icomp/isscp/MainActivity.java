@@ -15,6 +15,8 @@ import com.icomp.isscp.fragment.WebMineFragment;
 import com.icomp.isscp.resp.RespLogin;
 import com.mark.mobile.utils.LogUtils;
 
+import java.util.ArrayList;
+
 public class MainActivity extends BaseActivity implements WebFragment.OnFragmentInteractionListener {
     private RespLogin mUser;
     private BaseFragment showCurrent;
@@ -22,24 +24,48 @@ public class MainActivity extends BaseActivity implements WebFragment.OnFragment
     private FragmentTransaction mFragmentTransaction;
     private long backTime;
 
-
-    private String[] urls = new String[]{
+/*    private String[] urls = new String[]{
             NetTaskContext.HOST + "UserService/TokenLogin?TokenID=",
             NetTaskContext.HOST + "Movement/Index",
             NetTaskContext.HOST + "EventActivity/Index",
             NetTaskContext.HOST + "LearningCommunity/Index",
             NetTaskContext.HOST + "My/Index",
             NetTaskContext.HOST + "UserService/TokenLogout?TokenID="
-    };
+    };*/
+
+    public static ArrayList<String> sUrsList = new ArrayList<>();
+/*    static{
+        sUrsList.add(NetTaskContext.HOST + "UserService/TokenLogin?TokenID=");
+        sUrsList.add(NetTaskContext.HOST + "Movement/Index");
+        sUrsList.add(NetTaskContext.HOST + "EventActivity/Index");
+        sUrsList.add(NetTaskContext.HOST + "LearningCommunity/Index");
+        sUrsList.add(NetTaskContext.HOST + "My/Index");
+
+        sUrsList.add(NetTaskContext.HOST + "UserService/TokenLogout?TokenID=");
+    }*/
+
+    static{
+        sUrsList.add("https://m.baidu.com/");
+        sUrsList.add("http://www.sina.com/");
+        sUrsList.add("http://www.qq.com/");
+        sUrsList.add("http://www.163.com/");
+        sUrsList.add("http://www.youku.com/");
+
+        sUrsList.add(NetTaskContext.HOST + "UserService/TokenLogout?TokenID=");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mUser = getIntent().getParcelableExtra("data-user");
         mFgr = getSupportFragmentManager();
-        urls[0]+=mUser.getReData();
-        urls[5]+=mUser.getReData();
+        mUser = getIntent().getParcelableExtra("data-user");
+        if(mUser!=null){
+            sUrsList.set(0, sUrsList.get(0) + mUser.getReData());
+            sUrsList.set(5, sUrsList.get(5) + mUser.getReData());
+        }
+
+        ArrayList<String> ss = new ArrayList<>();
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
 
@@ -63,10 +89,10 @@ public class MainActivity extends BaseActivity implements WebFragment.OnFragment
                 if (current == null) {
                     switch(position){
                         case 4:
-                            current = WebMineFragment.newInstance(urls[position]);
+                            current = WebMineFragment.newInstance(sUrsList.get(position));
                             break;
                         default:
-                            current = WebFragment.newInstance(urls[position]);
+                            current = WebFragment.newInstance(sUrsList.get(position));
                             break;
                     }
                 }
@@ -138,7 +164,7 @@ public class MainActivity extends BaseActivity implements WebFragment.OnFragment
         }
         switch(requestCode){
             case 10010:
-                showCurrent.onPageLoad(urls[5]);
+                showCurrent.onPageLoad(sUrsList.get(5));
                 break;
         }
     }

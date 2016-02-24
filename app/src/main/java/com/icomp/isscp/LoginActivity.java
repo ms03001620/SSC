@@ -31,8 +31,8 @@ public class LoginActivity extends AppCompatActivity {
             mEditId.setText(loginId);
         }
 
-        mEditId.setText("1100015");
-        mEditPwd.setText("wwwww");
+        mEditId.setText("12323111");
+        mEditPwd.setText("123123");
 
         findViewById(R.id.text_reg).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +67,13 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(intent);
                             finish();
                         } else {
-                            Snackbar.make(v, resp.getReMsg(), Snackbar.LENGTH_LONG).show();
+                            //Snackbar.make(v, resp.getReMsg(), Snackbar.LENGTH_LONG).show();
+
+
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            intent.putExtra("data-user", "");
+                            startActivity(intent);
+                            finish();
                         }
                     }
                 });

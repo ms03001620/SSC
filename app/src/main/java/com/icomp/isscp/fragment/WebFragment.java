@@ -8,13 +8,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 
+import com.icomp.isscp.MainActivity;
 import com.icomp.isscp.R;
 import com.mark.mobile.utils.LogUtils;
 
 public class WebFragment extends BaseFragment {
     private static final String ARG_PARAM1 = "WebFragment.param";
     private String mUrl;
+
+    private ProgressBar mProgressBar;
 
     public static WebFragment newInstance(String param1) {
         WebFragment fragment = new WebFragment();
@@ -34,7 +38,9 @@ public class WebFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mWebview = (WebView)inflater.inflate(R.layout.fragment_web, container, false);
+        View root = inflater.inflate(R.layout.fragment_web, container, false);
+        mWebview = (WebView)root.findViewById(R.id.webview);
+        mProgressBar = (ProgressBar)root.findViewById(R.id.progressbar);
         mWebview.getSettings().setJavaScriptEnabled(true);
         mWebview.setWebViewClient(new WebViewClient() {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -43,16 +49,24 @@ public class WebFragment extends BaseFragment {
                 return true;
             }
 
-            public void onPageFinished(WebView view, String url) {}
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {}
-            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {}
+            public void onPageFinished(WebView view, String url) {
+                mProgressBar.setVisibility(View.GONE);
+            }
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                if(MainActivity.sUrsList.contains(url)){
+                    mProgressBar.setVisibility(View.VISIBLE);
+                }
+            }
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                mProgressBar.setVisibility(View.GONE);
+            }
         });
 
         LogUtils.paintD("loadUrl:", mUrl);
         if (!TextUtils.isEmpty(mUrl)) {
             mWebview.loadUrl(mUrl);
         }
-        return mWebview;
+        return root;
     }
 
 }
