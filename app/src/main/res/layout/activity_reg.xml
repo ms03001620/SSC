@@ -43,7 +43,7 @@
 
                 <EditText
                     android:id="@+id/edit_id"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/edit_width"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/icon_edit_margin"
                     android:hint="请输入学号"
@@ -66,7 +66,7 @@
 
                 <EditText
                     android:id="@+id/edit_name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/edit_width"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/icon_edit_margin"
                     android:hint="请输入真实姓名"
@@ -89,7 +89,7 @@
 
                 <EditText
                     android:id="@+id/edit_email"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/edit_width"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/icon_edit_margin"
                     android:hint="请输入电子邮件"
@@ -111,7 +111,7 @@
 
                 <EditText
                     android:id="@+id/edit_pwd"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/edit_width"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/icon_edit_margin"
                     android:password="true"
@@ -134,7 +134,7 @@
 
                 <EditText
                     android:id="@+id/edit_pwd_ok"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/edit_width"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/icon_edit_margin"
                     android:hint="确认登录密码"

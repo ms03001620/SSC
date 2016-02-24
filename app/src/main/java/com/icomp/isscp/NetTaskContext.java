@@ -13,7 +13,7 @@ public class NetTaskContext {
     /**
      * 测试
      */
-    private final static String HOST = "http://dldx.mob.sigilsoft.com/";
+    public final static String HOST = "http://202.199.155.62:8002/";
     /**
      * 正式
      */

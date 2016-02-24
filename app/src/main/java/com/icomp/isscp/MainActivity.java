@@ -22,15 +22,14 @@ public class MainActivity extends BaseActivity implements WebFragment.OnFragment
     private FragmentTransaction mFragmentTransaction;
     private long backTime;
 
-    private final static String HOST = "http://dldx.mob.sigilsoft.com/";
 
     private String[] urls = new String[]{
-            HOST + "UserService/TokenLogin?TokenID=",
-            HOST + "Movement/Index",
-            HOST + "EventActivity/Index",
-            HOST + "CarveOutCommunity/Index",
-            HOST + "My/Index",
-            HOST + "UserService/TokenLogout?TokenID="
+            NetTaskContext.HOST + "UserService/TokenLogin?TokenID=",
+            NetTaskContext.HOST + "Movement/Index",
+            NetTaskContext.HOST + "EventActivity/Index",
+            NetTaskContext.HOST + "LearningCommunity/Index",
+            NetTaskContext.HOST + "My/Index",
+            NetTaskContext.HOST + "UserService/TokenLogout?TokenID="
     };
 
     @Override
