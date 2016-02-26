@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.Toast;
@@ -24,48 +23,28 @@ public class MainActivity extends BaseActivity implements WebFragment.OnFragment
     private FragmentTransaction mFragmentTransaction;
     private long backTime;
 
-/*    private String[] urls = new String[]{
-            NetTaskContext.HOST + "UserService/TokenLogin?TokenID=",
-            NetTaskContext.HOST + "Movement/Index",
-            NetTaskContext.HOST + "EventActivity/Index",
-            NetTaskContext.HOST + "LearningCommunity/Index",
-            NetTaskContext.HOST + "My/Index",
-            NetTaskContext.HOST + "UserService/TokenLogout?TokenID="
-    };*/
-
-    public static ArrayList<String> sUrsList = new ArrayList<>();
-/*    static{
-        sUrsList.add(NetTaskContext.HOST + "UserService/TokenLogin?TokenID=");
-        sUrsList.add(NetTaskContext.HOST + "Movement/Index");
-        sUrsList.add(NetTaskContext.HOST + "EventActivity/Index");
-        sUrsList.add(NetTaskContext.HOST + "LearningCommunity/Index");
-        sUrsList.add(NetTaskContext.HOST + "My/Index");
-
-        sUrsList.add(NetTaskContext.HOST + "UserService/TokenLogout?TokenID=");
-    }*/
-
-    static{
-        sUrsList.add("https://m.baidu.com/");
-        sUrsList.add("http://www.sina.com/");
-        sUrsList.add("http://www.qq.com/");
-        sUrsList.add("http://www.163.com/");
-        sUrsList.add("http://www.youku.com/");
-
-        sUrsList.add(NetTaskContext.HOST + "UserService/TokenLogout?TokenID=");
-    }
+    public ArrayList<String> sUrsList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        sUrsList.clear();
+        sUrsList.add(NetTaskContext.HOST + "UserService/TokenLogin?TokenID=");
+        sUrsList.add(NetTaskContext.HOST + "Movement/Index/");
+        sUrsList.add(NetTaskContext.HOST + "EventActivity/Index/");
+        sUrsList.add(NetTaskContext.HOST + "LearningCommunity/Index/");
+        sUrsList.add(NetTaskContext.HOST + "My/Index/");
+        sUrsList.add(NetTaskContext.HOST + "UserService/TokenLogout?TokenID=");
+        sUrsList.add(NetTaskContext.HOST + "main/index");
         mFgr = getSupportFragmentManager();
         mUser = getIntent().getParcelableExtra("data-user");
         if(mUser!=null){
-            sUrsList.set(0, sUrsList.get(0) + mUser.getReData());
-            sUrsList.set(5, sUrsList.get(5) + mUser.getReData());
+            String hasTokenUrlIn = sUrsList.get(0) + mUser.getReData();
+            String hasTokenUrlOut = sUrsList.get(5) + mUser.getReData();
+            sUrsList.set(0, hasTokenUrlIn);
+            sUrsList.set(5, hasTokenUrlOut);
         }
-
-        ArrayList<String> ss = new ArrayList<>();
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
 
@@ -167,5 +146,9 @@ public class MainActivity extends BaseActivity implements WebFragment.OnFragment
                 showCurrent.onPageLoad(sUrsList.get(5));
                 break;
         }
+    }
+
+    public ArrayList<String> getUrsList() {
+        return sUrsList;
     }
 }

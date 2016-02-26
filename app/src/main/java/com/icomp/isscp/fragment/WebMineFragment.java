@@ -8,11 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 
+import com.icomp.isscp.MainActivity;
+import com.icomp.isscp.MainApp;
 import com.icomp.isscp.R;
 import com.mark.mobile.utils.LogUtils;
 
 public class WebMineFragment extends BaseFragment {
+
+    private ProgressBar mProgressBar;
     private static final String ARG_PARAM1 = "WebMineFragment.param";
     private String mUrl;
 
@@ -42,7 +47,7 @@ public class WebMineFragment extends BaseFragment {
                 onButtonPressed("app/action/setting");
             }
         });
-
+        mProgressBar = (ProgressBar)view.findViewById(R.id.progressbar);
         mWebview = (WebView) view.findViewById(R.id.webview);
         mWebview.getSettings().setJavaScriptEnabled(true);
         mWebview.setWebViewClient(new WebViewClient() {
@@ -57,9 +62,19 @@ public class WebMineFragment extends BaseFragment {
                 return true;
             }
 
-            public void onPageFinished(WebView view, String url) {}
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {}
-            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {}
+            public void onPageFinished(WebView view, String url) {
+                mProgressBar.setVisibility(View.GONE);
+            }
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                if(getUrsList()!=null){
+                    if(getUrsList().contains(url)){
+                        mProgressBar.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                mProgressBar.setVisibility(View.GONE);
+            }
         });
 
         LogUtils.paintD("loadUrl:", mUrl);

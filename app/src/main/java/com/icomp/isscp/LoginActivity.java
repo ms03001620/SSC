@@ -31,13 +31,13 @@ public class LoginActivity extends AppCompatActivity {
             mEditId.setText(loginId);
         }
 
-        mEditId.setText("12323111");
+        mEditId.setText("12323011");
         mEditPwd.setText("123123");
 
         findViewById(R.id.text_reg).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            startActivity(new Intent(LoginActivity.this, RegActivity.class));
+                startActivity(new Intent(LoginActivity.this, RegActivity.class));
             }
         });
 
@@ -67,13 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(intent);
                             finish();
                         } else {
-                            //Snackbar.make(v, resp.getReMsg(), Snackbar.LENGTH_LONG).show();
-
-
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            intent.putExtra("data-user", "");
-                            startActivity(intent);
-                            finish();
+                            Snackbar.make(v, resp.getReMsg(), Snackbar.LENGTH_LONG).show();
                         }
                     }
                 });

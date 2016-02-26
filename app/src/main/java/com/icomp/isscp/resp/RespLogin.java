@@ -3,7 +3,7 @@ package com.icomp.isscp.resp;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class RespLogin implements Parcelable{
+public class  RespLogin implements Parcelable{
 /*    {
         "isError": false,
             "ReData": "DE896DF9-5719-4190-B696-73FE4F9CEE71",

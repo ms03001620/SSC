@@ -11,6 +11,7 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 import com.icomp.isscp.MainActivity;
+import com.icomp.isscp.MainApp;
 import com.icomp.isscp.R;
 import com.mark.mobile.utils.LogUtils;
 
@@ -53,8 +54,12 @@ public class WebFragment extends BaseFragment {
                 mProgressBar.setVisibility(View.GONE);
             }
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                if(MainActivity.sUrsList.contains(url)){
-                    mProgressBar.setVisibility(View.VISIBLE);
+                LogUtils.paintD("onPageStarted ", url);
+                if(getUrsList()!=null){
+                    if(getUrsList().contains(url)){
+                        LogUtils.paintD("show ", url);
+                        mProgressBar.setVisibility(View.VISIBLE);
+                    }
                 }
             }
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {

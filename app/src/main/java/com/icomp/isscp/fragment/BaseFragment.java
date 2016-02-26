@@ -1,8 +1,14 @@
 package com.icomp.isscp.fragment;
 
 import android.app.Activity;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.webkit.WebView;
+
+import com.icomp.isscp.MainActivity;
+
+import java.util.ArrayList;
 
 /**
  * Created by Mark on 2015/10/29.
@@ -40,5 +46,13 @@ public abstract class BaseFragment extends Fragment {
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(String uri);
+    }
+
+    public ArrayList<String> getUrsList() {
+        if (getActivity() == null) {
+            return null;
+        }
+        MainActivity main = (MainActivity) getActivity();
+        return main.getUrsList();
     }
 }
