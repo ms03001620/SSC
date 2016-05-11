@@ -31,7 +31,7 @@ public class MainActivity extends BaseActivity implements WebFragment.OnFragment
         setContentView(R.layout.activity_main);
         sUrsList.clear();
         sUrsList.add(NetTaskContext.HOST + "UserService/TokenLogin?TokenID=");
-        sUrsList.add(NetTaskContext.HOST + "Movement/Index/");
+        sUrsList.add(NetTaskContext.HOST + "Movement/Record/");
         sUrsList.add(NetTaskContext.HOST + "EventActivity/Index/");
         sUrsList.add(NetTaskContext.HOST + "LearningCommunity/Index/");
         sUrsList.add(NetTaskContext.HOST + "My/Index/");

@@ -31,8 +31,8 @@ public class LoginActivity extends AppCompatActivity {
             mEditId.setText(loginId);
         }
 
-        mEditId.setText("12323011");
-        mEditPwd.setText("123123");
+        //mEditId.setText("12323011");
+        //mEditPwd.setText("123123");
 
         findViewById(R.id.text_reg).setOnClickListener(new View.OnClickListener() {
             @Override
